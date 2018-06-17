@@ -27,10 +27,17 @@
             // Creating variables to hold the number of wins and losses
             var wins = 0;
             var losses = 0;
+
+            // This function is run whenever the user presses a key.
+            document.onkeyup = function(event) {
+
+                // Determines which key was pressed.
+                var userGuess = event.key;
         
-        
-        
-        
+            // Set the inner HTML contents of the #game div to our html string
+             document.querySelector("#game").innerHTML = html;
+      }
+    };  
         </script>
     </div>
 </body>
