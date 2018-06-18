@@ -34,11 +34,13 @@
     </div>
     <div class="container">
         <script>"type=text/javascript"
+            window.onload = function () {
+
             // Creates an array that lists out all of the options
             var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o",
             "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
-            var pokemon
+            var pokemon            // Word getHint*
             var getHint ;          // Word getHint
             var word ;             // Selected word
             var guess ;            // Guess
@@ -59,8 +61,8 @@
         
             // Set the inner HTML contents of the #game div to our html string
              document.querySelector("#game").innerHTML = html;
-      }
-    };  
+            }
+        };
         </script>
     </div>
 </body>
