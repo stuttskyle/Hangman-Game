@@ -11,6 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
+    <!--Text for hangman Game-->
     <div class="container">
         <h1>Hangman</h1>
         <p> 
@@ -18,12 +19,26 @@
             before you complete the word, the game is over. Good luck trainer!
         </p>
     </div>
+    <!--Buttons for hangman Game-->
+    <div class="container">
+        <div id="buttons"></div>
+        <p id="pokeName"></p>
+        <div id="holder"></div>
+        <p id="myLives"></p>
+        <p id="clue">Clue - </p>
+    </div>
+    <div class="container">
+        <button id="hint">Hint</button>
+        <button id="reset">Play Again</button>
+    </div>
+    </div>
     <div class="container">
         <script>"type=text/javascript"
             // Creates an array that lists out all of the options
             var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o",
             "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
+            var pokemon
             var getHint ;          // Word getHint
             var word ;             // Selected word
             var guess ;            // Guess
