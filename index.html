@@ -43,11 +43,36 @@
             var pokemon            // Word getHint*
             var getHint ;          // Word getHint
             var word ;             // Selected word
-            var guess ;            // Guess
+            var guess ;            // Guess 
             var guesses = [ ];     // Stored guesses
             var lives ;            // Lives
             var counter ;          // Count correct guesses
             var space;             // Number of spaces in word '-
+
+            // Get Element By ID
+
+            var showLives = document.getElementById("mylives");
+            var showPokemon = document.getElementById("pokemon");
+            var getHint = document.getElementById("hint");
+            var showClue = document.getElementById("clue");
+
+            // Alphabet List
+            var buttons = function () {
+            myButtons = document.getElementById('buttons');
+            letters = document.createElement('ul');
+
+            for (var i = 0; i < alphabet.length; i++) {
+                letters.id = 'alphabet';
+                list = document.createElement('li');
+                list.id = 'letter';
+                list.innerHTML = alphabet[i];
+                check();
+                myButtons.appendChild(letters);
+                letters.appendChild(list);
+                }
+            }
+
+            // 
 
             // Creating variables to hold the number of wins and losses
             var wins = 0;
