@@ -34,7 +34,7 @@
     </div>
     <div class="container">
         <script>"type=text/javascript"
-            window.onload = function () {
+            $(document).ready(function() {
 
             // Creates an array that lists out all of the options
             var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o",
@@ -75,7 +75,7 @@
             // Create Guesses
             var outcome = function () {
                 wordHolder = document.getElementById('hold');
-                correct = document.getElementById('ol'),
+                correct = document.getElementById('ol');
                 
                 for (var i=0; i < word.length; i++) {
                     correct.setAttribute('id';  'my-word'),
@@ -93,6 +93,41 @@
                 correct.appendChild(guess);
                 }
             }
+
+            // Lives
+            var comments = function () {
+                if (lives < 1) {
+                    showLives.innerHTML = "Game Over!";
+                }
+                for (var i = 0; i < guesses.length; i++) {
+                    if (counter + space) === (guesses.length) {
+                        showLives.innerHTML = "You Win!";
+                    }
+                }
+            }
+
+              // OnClick
+                var check = function () {
+                    list.onclick = function () {
+                    var guess = (this.innerHTML);
+                    this.setAttribute("class", "active");
+                    this.onclick = null;
+                    for (var i = 0; i < word.length; i++) {
+                        if (word[i] === geuss) {
+                            guesses[i].innerHTML = guess;
+                            counter += 1;
+                        } 
+                    }
+                    var j = (word.indexOf(geuss));
+                    if (j === -1) {
+                        lives -= 1;
+                        comments();
+                    } else {
+                        comments();
+                    }
+                }
+            }   
+  
 
             // Creating variables to hold the number of wins and losses
             var wins = 0;
