@@ -6,19 +6,16 @@ var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
 
 var pokemon            // Pokemon choices
 var chosenPokemon;     // Selected Pokemon
-var getHint ;          // Word getHint
 var word ;             // Selected word
 var guess ;            // Guess 
 var guesses = [ ];     // Stored guesses
 var lives ;            // Lives
 var counter ;          // Count correct guesses
-var space;             // Number of spaces in word '-
+var space;             // Number of spaces in word '-'
 
 // Get Element By ID
 
 var showLives = document.getElementById("mylives");
-var showPokemon = document.getElementById("pokemon");
-var getHint = document.getElementById("hint");
 var showClue = document.getElementById("clue");
 
 // Alphabet List
@@ -38,7 +35,7 @@ for (var i = 0; i < alphabet.length; i++) {
 }
 
 // Create Guesses
-var outcome = function () {
+var result = function () {
     wordHolder = document.getElementById('hold');
     correct = document.getElementById('ul');
     
@@ -59,6 +56,10 @@ var outcome = function () {
     }
 }
 
+// Creating variables to hold the number of wins and losses
+// var wins = 0;
+// var losses = 0;
+
 // Lives
 var comments = function () {
     if (lives < 1) {
@@ -69,21 +70,6 @@ var comments = function () {
             showLives.innerHTML = "You Win!";
         }
     }
-}
-
-// Creating variables to hold the number of wins and losses
-var wins = 0;
-var losses = 0;
-
-
-// This function is run whenever the user presses a key.
-document.onkeyup = function(event) {
-
-// Determines which key was pressed.
-    var userGuess = event.key;
-
-// Set the inner HTML contents of the #game div to our html string
- document.querySelector("#game").innerHTML = userGuess;
 }
 
 // OnClick
