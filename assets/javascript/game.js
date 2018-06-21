@@ -1,3 +1,5 @@
+window.onload = function() {
+
 // Creates an array that lists out all of the options
 var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o",
 "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
@@ -22,7 +24,7 @@ var showClue = document.getElementById("clue");
 // Alphabet List
 var buttons = function () {
     myButtons = document.getElementById('buttons');
-    letters = document.createElement('ol');
+    letters = document.createElement('ul');
 
 for (var i = 0; i < alphabet.length; i++) {
     letters.id = 'alphabet';
@@ -38,7 +40,7 @@ for (var i = 0; i < alphabet.length; i++) {
 // Create Guesses
 var outcome = function () {
     wordHolder = document.getElementById('hold');
-    correct = document.getElementById('ol');
+    correct = document.getElementById('ul');
     
     for (var i=0; i < word.length; i++) {
         correct.setAttr('id', 'my-word');
@@ -81,7 +83,7 @@ document.onkeyup = function(event) {
     var userGuess = event.key;
 
 // Set the inner HTML contents of the #game div to our html string
- document.querySelector("#game").innerHTML = "Yo";
+ document.querySelector("#game").innerHTML = userGuess;
 }
 
 // OnClick
@@ -142,7 +144,7 @@ hint.onclick = function() {
 
 var pokemonIndex = pokemon.indexOf(chosenPokemon);
 var hintIndex = chosenPokemon.indexOf(word);
-showClue.innerHTML = "Clue: -" + hints [poekmonIndex][hintIndex];
+showClue.innerHTML = "Clue: -" + hints [pokemonIndex][hintIndex];
 }
 
 
@@ -154,3 +156,5 @@ document.getElementById('reset').onclick = function() {
     showClue.innerHTML = "";
     context.clearRect(0, 0, 400, 400);
     play();
+}
+}
