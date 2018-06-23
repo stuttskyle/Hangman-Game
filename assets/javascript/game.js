@@ -2,9 +2,8 @@
 var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o",
 "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
-var pokemon            // Pokemon choices
+var pokemon;            // Pokemon choices
 var chosenPokemon;     // Selected Pokemon
-var getHint ;          // Word getHint
 var word ;             // Selected word
 var guess ;            // Guess 
 var guesses = [ ];     // Stored guesses
@@ -19,33 +18,25 @@ var losses = 0;
 
 window.onload = function() {
 
-// This function is run whenever the user presses a key.
-document.onkeyup = function(event) {
-
-    // Determines which key was pressed.
-    var userGuess = event.key;
-
 // Alphabet List
 var buttons = function () {
-    myButtons = document.getElementById('buttons');
-    letters = document.createElement('ul');
+    buttons = document.getElementById('buttons');
+    alphabet = document.createElement('ul');
 
 for (var i = 0; i < alphabet.length; i++) {
-    letters.id = 'alphabet';
+    alphabet.id = 'alphabet';
     list = document.createElement('li');
     list.id = 'letter';
     list.innerHTML = alphabet[i];
     check();
-    myButtons.appendChild(letters);
-    letters.appendChild(list);
+    buttons.appendChild(alphabet);
+    alphabet.appendChild(list);
     }
-}
+};
 
 // Get Element By ID
 
 var showLives = document.getElementById("mylives");
-var showPokemon = document.getElementById("pokemon");
-var getHint = document.getElementById("hint");
 var showClue = document.getElementById("clue");
 
 // Create Guesses
@@ -68,7 +59,7 @@ var result = function () {
     wordHolder.appendChild(correct);
     correct.appendChild(guess);
     }
-}
+};
 
 // Lives
 var comments = function () {
@@ -80,7 +71,7 @@ var comments = function () {
             showLives.innerHTML = "You Win!";
         }
     }
-}
+};
 
 
 // OnClick
@@ -102,8 +93,14 @@ var comments = function () {
         } else {
             comments();
         }
-    }
-}
+    };
+};
+
+// This function is run whenever the user presses a key.
+document.onkeyup = function(event) {
+
+    // Determines which key was pressed.
+    var userGuess = event.key;
 
 // Pokemon Names To Guess
 play = function () {
@@ -124,9 +121,7 @@ play = function () {
     counter = 0;
     space = 0;
     comments();
-    selectCat();
-    canvas();
-}
+};
 
 // Hints!
 
@@ -142,17 +137,7 @@ hint.onclick = function() {
 var pokemonIndex = pokemon.indexOf(chosenPokemon);
 var hintIndex = chosenPokemon.indexOf(word);
 showClue.innerHTML = "Clue: -" + hints [pokemonIndex][hintIndex];
-}
-
-document.getElementById('reset').onclick = function() {
-    console.log("Resetting the game"); //gage -reset the game notice
-    correct = document.getElementById('ul'); //gage - here you need to target again everything you want to remove
-    correct.parentNode.removeChild(correct); //this is attempting to empty itself, but you could use other ways to do this
-    letters.parentNode.removeChild(letters);
-    showClue.innerHTML = "";
-    context.clearReact(0, 0, 400, 400);
-    play(); 
-  }
+};
 
 var html =  
         "<p>You chose: " + userGuess + "</p>" +
@@ -161,5 +146,15 @@ var html =
 
 // Set the inner HTML contents of the #game div to our html string
     document.querySelector("#game").innerHTML = html;
-    }
+    };
+
+document.getElementById('reset').onclick = function() {
+    console.log("Resetting the game"); //gage -reset the game notice
+    correct = document.getElementById('ul'); //gage - here you need to target again everything you want to remove
+    correct.parentNode.removeChild(correct); //this is attempting to empty itself, but you could use other ways to do this
+    alphabet.parentNode.removeChild(alphabet);
+    showClue.innerHTML = "";
+    context.clearReact(0, 0, 400, 400);
+    play(); 
+  };
 };
