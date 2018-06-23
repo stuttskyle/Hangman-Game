@@ -9,7 +9,16 @@ var guess ;            // Guess
 var guesses = [ ];     // Stored guesses
 var lives ;            // Lives
 var counter ;          // Count correct guesses
-var space;             // Number of spaces in word '-
+var space;             // Number of spaces in word '-'
+var hint;
+var hints;
+var list;
+var wordHolder;
+var correct;
+var userGuess;
+var play;
+var context;
+var guessArrays = [];
 
 // Creating variables to hold the number of wins and losses
 var wins = 0;
@@ -44,21 +53,13 @@ var result = function () {
     wordHolder = document.getElementById('hold');
     correct = document.getElementById('ul');
     
-    for (var i=0; i < word.length; i++) {
-        correct.setAttr('id', 'my-word');
-        guess = document.createElement('li');
-        guess.setAttr('class', 'guess');
-        if (word[i] === "-") {
-            userGuess.innerHTML = "-";
-            space += 1;
-        } else {
-            guess.innerHTML = "_";
-        }
-    
-    guesses.push(guess);
-    wordHolder.appendChild(correct);
-    correct.appendChild(guess);
+    for (var i=0; i < word.length; i++) { 
+    guessArrays.push("-");
     }
+    console.log(guessArrays)
+    // wordHolder.appendChild(correct);
+    document.querySelector("#holder").innerHTML = guessArrays; // Fix to js
+    // correct.appendChild(guess); // Fix to js
 };
 
 // Lives
@@ -93,14 +94,24 @@ var comments = function () {
         } else {
             comments();
         }
+
+        // Hints!
+
+    hint.onclick = function() {
+        hints = [
+            "Loyal Electric Mouse", "Edward Scissorhands, but bug version", "Dangerous Noodle", "Abra, Kadabra, ...",
+            "Vapor Ball", "Splash!", "Beady-Eye Copycat", "Pokemon with Most Evolution Possibilites", 
+            "Hungry/Sleepy, the answer is not 'Yourself'","Not MewOne but...", "Lullaby Master",
+            "This Pokemon's evolutions change based off it's gender", "Obviously the best starter", 
+            "Obviously the worst starter", "SQUAD!"
+        ];
+
+        var pokemonIndex = pokemon.indexOf(chosenPokemon);
+        var hintIndex = chosenPokemon.indexOf(word);
+        showClue.innerHTML = "Clue: -" + hints [pokemonIndex][hintIndex];
+        };
     };
 };
-
-// This function is run whenever the user presses a key.
-document.onkeyup = function(event) {
-
-    // Determines which key was pressed.
-    var userGuess = event.key;
 
 // Pokemon Names To Guess
 play = function () {
@@ -109,11 +120,9 @@ play = function () {
         "snorlax", "mewtwo", "jigglypuff", "nidoran", "charmander", "bulbasaur", "squirtle"
     ];
 
-    chosenPokemon = pokemon[Math.floor(Math.random() * pokemon.length)];
-    word = chosenPokemon[Math.floor(Math.random() * pokemon.length)];
-    word = word.replace("\\s", "-");
+    word = pokemon[Math.floor(Math.random() * pokemon.length)];
     console.log(word);
-    buttons();
+    // buttons();
 
     guesses = [ ];
     result();
@@ -121,40 +130,30 @@ play = function () {
     counter = 0;
     space = 0;
     comments();
-};
 
-// Hints!
-
-hint.onclick = function() {
-    hints = [
-        "Loyal Electric Mouse", "Edward Scissorhands, but bug version", "Dangerous Noodle", "Abra, Kadabra, ...",
-        "Vapor Ball", "Splash!", "Beady-Eye Copycat", "Pokemon with Most Evolution Possibilites", 
-        "Hungry/Sleepy, the answer is not 'Yourself'","Not MewOne but...", "Lullaby Master",
-        "This Pokemon's evolutions change based off it's gender", "Obviously the best starter", 
-        "Obviously the worst starter", "SQUAD!"
-    ];
-
-var pokemonIndex = pokemon.indexOf(chosenPokemon);
-var hintIndex = chosenPokemon.indexOf(word);
-showClue.innerHTML = "Clue: -" + hints [pokemonIndex][hintIndex];
-};
-
-var html =  
-        "<p>You chose: " + userGuess + "</p>" +
+    var html =  
+        "<p>something: " + userGuess + "</p>" +
         "<p>wins: " + wins + "</p>" +
         "<p>losses: " + losses + "</p>";
 
 // Set the inner HTML contents of the #game div to our html string
     document.querySelector("#game").innerHTML = html;
+};
+
+
+// This function is run whenever the user presses a key.
+document.onkeyup = function(event) {
+
+    // Determines which key was pressed.
+    var userGuess = event.key;
+        guesses.push(userGuess);
+        document.querySelector("#userGuess").innerHTML = guesses;
     };
 
 document.getElementById('reset').onclick = function() {
-    console.log("Resetting the game"); //gage -reset the game notice
-    correct = document.getElementById('ul'); //gage - here you need to target again everything you want to remove
-    correct.parentNode.removeChild(correct); //this is attempting to empty itself, but you could use other ways to do this
-    alphabet.parentNode.removeChild(alphabet);
-    showClue.innerHTML = "";
-    context.clearReact(0, 0, 400, 400);
+    $("#buttons, #pokeName, #holder, #myLives, #clue, #userGuess").empty();
+    guesses = []
+    guessArrays = []
     play(); 
   };
 };
